@@ -5,6 +5,30 @@
     <title>Supersvetainė</title>
 </head>
 <body>
+<div>
+    <ul>
+        {% if user.is_authenticated %}
+        Sveiki, {{ user.username }}!
+        <li>
+            <form method="post" action="{% url 'atsijungti' %}">
+                    {% csrf_token %}
+                <button type="submit">Atsijungti</button>
+            </form>
+        </li>
+        {% else %}
+        Sveiki, svečias!
+        <li>
+            <a href="{% url 'register' %}">Registracija</a>
+        </li>
+        <li>
+            <a href="{% url 'prisijungti' %}">Prisijungti</a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'index' %}">Index</a>
+        </li>
+    </ul>
+</div>
 {% block "content" %}{% endblock %}
 </body>
 </html>
